@@ -6,6 +6,12 @@
 // GraphQL query operation: PageDetails
 // ====================================================
 
+export interface PageDetails_page_pageType {
+  __typename: "PageType";
+  id: string;
+  name: string;
+}
+
 export interface PageDetails_page {
   __typename: "Page";
   id: string;
@@ -16,6 +22,7 @@ export interface PageDetails_page {
   seoTitle: string | null;
   seoDescription: string | null;
   publicationDate: any | null;
+  pageType: PageDetails_page_pageType;
 }
 
 export interface PageDetails {

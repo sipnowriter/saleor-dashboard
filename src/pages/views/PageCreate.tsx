@@ -1,6 +1,8 @@
 import { WindowTitle } from "@saleor/components/WindowTitle";
+import { DEFAULT_INITIAL_SEARCH_DATA } from "@saleor/config";
 import useNavigator from "@saleor/hooks/useNavigator";
 import useNotifier from "@saleor/hooks/useNotifier";
+import usePageTypeSearch from "@saleor/searches/usePageTypeSearch";
 import React from "react";
 import { useIntl } from "react-intl";
 
@@ -17,6 +19,14 @@ export const PageCreate: React.FC<PageCreateProps> = () => {
   const navigate = useNavigator();
   const notify = useNotifier();
   const intl = useIntl();
+
+  const {
+    loadMore: loadMorePageTypes,
+    search: searchPageTypes,
+    result: searchPageTypesOpts
+  } = usePageTypeSearch({
+    variables: DEFAULT_INITIAL_SEARCH_DATA
+  });
 
   const handlePageCreate = (data: PageCreateData) => {
     if (data.pageCreate.errors.length === 0) {
@@ -45,6 +55,9 @@ export const PageCreate: React.FC<PageCreateProps> = () => {
             errors={pageCreateOpts.data?.pageCreate.errors || []}
             saveButtonBarState={pageCreateOpts.status}
             page={null}
+            pageTypes={searchPageTypesOpts.data?.search.edges.map(
+              edge => edge.node
+            )}
             onBack={() => navigate(pageListUrl())}
             onRemove={() => undefined}
             onSubmit={formData =>
@@ -53,6 +66,7 @@ export const PageCreate: React.FC<PageCreateProps> = () => {
                   input: {
                     contentJson: JSON.stringify(formData.content),
                     isPublished: formData.isPublished,
+                    pageType: formData.pageType,
                     publicationDate: formData.publicationDate,
                     seo: {
                       description: formData.seoDescription,
@@ -64,6 +78,12 @@ export const PageCreate: React.FC<PageCreateProps> = () => {
                 }
               })
             }
+            fetchPageTypes={searchPageTypes}
+            fetchMorePageTypes={{
+              hasMore: searchPageTypesOpts.data?.search.pageInfo.hasNextPage,
+              loading: searchPageTypesOpts.loading,
+              onFetchMore: loadMorePageTypes
+            }}
           />
         </>
       )}

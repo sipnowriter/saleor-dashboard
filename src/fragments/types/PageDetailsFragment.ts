@@ -6,6 +6,12 @@
 // GraphQL fragment: PageDetailsFragment
 // ====================================================
 
+export interface PageDetailsFragment_pageType {
+  __typename: "PageType";
+  id: string;
+  name: string;
+}
+
 export interface PageDetailsFragment {
   __typename: "Page";
   id: string;
@@ -16,4 +22,5 @@ export interface PageDetailsFragment {
   seoTitle: string | null;
   seoDescription: string | null;
   publicationDate: any | null;
+  pageType: PageDetailsFragment_pageType;
 }

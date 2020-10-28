@@ -2,7 +2,7 @@
 /* eslint-disable */
 // This file was automatically generated and should not be edited.
 
-import { PageInput, PageErrorCode } from "./../../types/globalTypes";
+import { PageCreateInput, PageErrorCode } from "./../../types/globalTypes";
 
 // ====================================================
 // GraphQL mutation operation: PageCreate
@@ -12,6 +12,12 @@ export interface PageCreate_pageCreate_errors {
   __typename: "PageError";
   code: PageErrorCode;
   field: string | null;
+}
+
+export interface PageCreate_pageCreate_page_pageType {
+  __typename: "PageType";
+  id: string;
+  name: string;
 }
 
 export interface PageCreate_pageCreate_page {
@@ -24,6 +30,7 @@ export interface PageCreate_pageCreate_page {
   seoTitle: string | null;
   seoDescription: string | null;
   publicationDate: any | null;
+  pageType: PageCreate_pageCreate_page_pageType;
 }
 
 export interface PageCreate_pageCreate {
@@ -37,5 +44,5 @@ export interface PageCreate {
 }
 
 export interface PageCreateVariables {
-  input: PageInput;
+  input: PageCreateInput;
 }

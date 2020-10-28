@@ -14,6 +14,12 @@ export interface PageUpdate_pageUpdate_errors {
   field: string | null;
 }
 
+export interface PageUpdate_pageUpdate_page_pageType {
+  __typename: "PageType";
+  id: string;
+  name: string;
+}
+
 export interface PageUpdate_pageUpdate_page {
   __typename: "Page";
   id: string;
@@ -24,6 +30,7 @@ export interface PageUpdate_pageUpdate_page {
   seoTitle: string | null;
   seoDescription: string | null;
   publicationDate: any | null;
+  pageType: PageUpdate_pageUpdate_page_pageType;
 }
 
 export interface PageUpdate_pageUpdate {

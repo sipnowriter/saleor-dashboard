@@ -37,6 +37,11 @@ export const page: PageDetails_page = {
   contentJson: JSON.stringify(content),
   id: "Kzx152sEm==",
   isPublished: false,
+  pageType: {
+    __typename: "PageType",
+    id: "UGFnZVR5cGU6MQ==",
+    name: "Blog"
+  },
   publicationDate: "",
   seoDescription: "About",
   seoTitle: "About",
